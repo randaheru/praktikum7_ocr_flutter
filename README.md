@@ -11,10 +11,13 @@
 ---
 
 ## Hasil  
-Berikut adalah tampilan hasil praktikum 7:  
+Berikut adalah tampilan hasil praktikum 7:
 
-![Hasil Akhir](assets/hasilakhir1.jpg)
+Gambar 1. Tampilan halaman utama aplikasi OCR Sederhana.
+![Hasil Akhir](assets/hasilakhir1.png)
+Gambar 2. Tampilan aplikasi saat dijalankan di emulator atau perangkat HP.
 ![Hasil  Emulator HP](assets/hasilakhir2.jpg)
+Gambar 3. Proses pengambilan gambar dan hasil deteksi teks menggunakan fitur OCR.
 ![Hasil Camera OCR](assets/hasilakhir3.jpg)
 
 ---
