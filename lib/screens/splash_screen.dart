@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
+import 'package:lottie/lottie.dart';
+import 'home_screen.dart'; // pastikan path benar
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,7 +14,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
+    // Navigasi ke Home setelah 3 detik
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -24,23 +26,35 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.blueAccent,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CircularProgressIndicator(color: Colors.white),
-            SizedBox(height: 20),
-            Text(
+          children: <Widget>[
+            // 🖼️ Ikon utama
+            const Icon(Icons.camera_alt, color: Colors.white, size: 80),
+            const SizedBox(height: 30),
+            // 📝 Judul aplikasi
+            const Text(
               'OCR Scanner',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
               ),
+            ),
+            const SizedBox(height: 10),
+            // 🎞️ Lottie Loading Animation
+            Lottie.asset(
+              'assets/lottie/Loading.json', // sesuaikan path kamu
+              width: 120,
+              height: 120,
+              fit: BoxFit.contain,
             ),
           ],
         ),
       ),
     );
   }
-} 
+}

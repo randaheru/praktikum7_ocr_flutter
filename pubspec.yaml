@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.2.1
+
 
   cupertino_icons: ^1.0.8
 
@@ -35,6 +37,7 @@ flutter:
     - assets/Lottie/camera_pop_up.json
     - assets/Lottie/Camera.json
     - assets/Lottie/Loading.json
+    - assets/Lottie/Loading1.json
     - assets/hasilakhir1.png
     - assets/hasilakhir2.jpg
     - assets/hasilakhir3.jpg
