@@ -24,58 +24,70 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Animasi Lottie dari assets/Lottie
+                  // Animasi Lottie
                   Lottie.asset(
-                    'assets/Lottie/Camera.json', // pastikan nama file sama persis (case-sensitive)
-                    width: 350,
-                    height: 350,
+                    'assets/Lottie/Camera.json',
+                    width: 300,
+                    height: 300,
                     fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
 
                   // Judul
                   const Text(
                     'Selamat Datang di OCR Scanner',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       letterSpacing: 1.0,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
                   const Text(
                     'Pindai teks dari gambar dengan cepat dan mudah!',
-                    style: TextStyle(fontSize: 14, color: Colors.white70),
+                    style: TextStyle(fontSize: 15, color: Colors.white70),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 40),
 
-                  // Tombol Mulai Scan
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const ScanScreen()),
-                      );
-                    },
-                    icon: const Icon(Icons.camera_alt_rounded, size: 22),
-                    label: const Text(
-                      'Mulai Scan Teks',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.blueAccent,
-                      elevation: 6,
-                      shadowColor: Colors.black26,
-                      minimumSize: const Size(220, 55),
+                  // Tombol (ListTile) dibuat lebih kecil
+                  SizedBox(
+                    width: 220, // 🔹 Lebar tombol lebih kecil
+                    height: 50, // 🔹 Tinggi tombol lebih kecil
+                    child: Card(
+                      color: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      elevation: 5,
+                      child: ListTile(
+                        dense: true, // 🔹 Membuat ListTile lebih ramping
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 2,
+                        ),
+                        leading: const Icon(
+                          Icons.camera_alt,
+                          color: Colors.blue,
+                        ),
+                        title: const Text(
+                          'Mulai Pindai Teks Baru',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black87,
+                            fontSize: 13,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ScanScreen(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

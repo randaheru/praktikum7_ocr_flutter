@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,64 +13,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // Ganti dengan alamat lokal kamu
-  final String apiUrl = "http://localhost/dataocr/get_user.php";
-  // pakai 10.0.2.2 kalau di emulator Android
-
   Future<void> _login() async {
-    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Harap isi semua field")));
-      return;
-    }
-
-    try {
-      // Menggunakan GET untuk mengambil semua data pengguna dari PHP
-      final response = await http.get(Uri.parse(apiUrl));
-
-      if (response.statusCode == 200) {
-        // PHP mengembalikan sebuah list/array pengguna
-        final List<dynamic> users = jsonDecode(response.body);
-
-        // Cari pengguna berdasarkan username yang diinput
-        var userFound = users.firstWhere(
-          (user) => user['username'] == _usernameController.text,
-          orElse: () => null, // Kembalikan null jika tidak ada yang cocok
-        );
-
-        // Jika pengguna ditemukan, periksa passwordnya
-        if (userFound != null) {
-          if (userFound['password'] == _passwordController.text) {
-            // Login berhasil
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(const SnackBar(content: Text("Login berhasil!")));
-            Navigator.pushReplacementNamed(context, '/splash');
-          } else {
-            // Password salah
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(const SnackBar(content: Text("Password salah")));
-          }
-        } else {
-          // Username tidak ditemukan
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Username tidak ditemukan")),
-          );
-        }
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Gagal mengambil data: ${response.statusCode}"),
-          ),
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Gagal terhubung ke server: $e")));
-    }
+    // Tidak perlu koneksi API, langsung login sukses
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text("Login berhasil!")));
+    Navigator.pushReplacementNamed(context, '/splash');
   }
 
   @override
@@ -157,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // Tombol Login
               ElevatedButton(
-                onPressed: _login,
+                onPressed: _login, // langsung tanpa koneksi server
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
