@@ -10,7 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   http: ^1.2.1
+  flutter_tts: ^4.0.2 
+
 
 
   cupertino_icons: ^1.0.8
@@ -41,6 +44,11 @@ flutter:
     - assets/hasilakhir1.png
     - assets/hasilakhir2.jpg
     - assets/hasilakhir3.jpg
+    - images/hasil2.png
+    - images/hasil2.2.png
+    - iamages/hasil1.jpg
+    - images/hasil3.jpg
+    - images/3soal.png
 
 
 
