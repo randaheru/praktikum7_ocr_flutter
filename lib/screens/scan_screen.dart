@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:lottie/lottie.dart';
 import 'result_screen.dart';
 
 late List<CameraDescription> cameras;
@@ -40,7 +41,11 @@ class _ScanScreenState extends State<ScanScreen>
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal menginisialisasi kamera: $e')),
+          SnackBar(
+            content: Text(
+              'Pemindaian Gagal! Periksa Izin Kamera atau coba lagi.: $e',
+            ),
+          ),
         );
       }
     }
@@ -86,18 +91,40 @@ class _ScanScreenState extends State<ScanScreen>
       );
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Terjadi kesalahan: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Pemindaian Gagal! Periksa Izin Kamera atau coba lagi.',
+          ),
+          duration: Duration(seconds: 3),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // === Custom Loading Screen ===
     if (_controller == null || !_controller!.value.isInitialized) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(
+        backgroundColor: Colors.grey[900],
+        body: const Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircularProgressIndicator(color: Colors.yellow),
+              SizedBox(height: 20),
+              Text(
+                'Memuat Kamera... Harap tunggu.',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ],
+          ),
+        ),
+      );
     }
 
+    // === Main Camera Screen ===
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
